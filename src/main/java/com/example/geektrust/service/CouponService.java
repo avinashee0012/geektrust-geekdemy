@@ -10,9 +10,9 @@ public class CouponService {
         this.purchase = purchase;
     }
 
+    // TODO incorrect response
     public void applyCoupon(CouponType couponType) {
         double discount = 0;
-        
         if(purchase.getProgrammes() >= 4){
             discount = purchase.getCheapest(); // cheapest item free
             couponType = CouponType.B4G1;

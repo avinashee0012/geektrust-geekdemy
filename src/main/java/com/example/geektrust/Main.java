@@ -1,20 +1,14 @@
-package com.example.geektrust; 
+package com.example.geektrust;
+
+import com.example.geektrust.command.CommandInvoker;
+import com.example.geektrust.config.AppConfig;
 
 public class Main {
-    public static void main(String[] args) {
-        /*
-        Sample code to read from file passed as command line argument
-        try {
-            // the file to be opened for reading
-            FileInputStream fis = new FileInputStream(args[0]);
-            Scanner sc = new Scanner(fis); // file to be scanned
-            // returns true if there is another line to read
-            while (sc.hasNextLine()) {
-               //Add your code here to process input commands
-            }
-            sc.close(); // closes the scanner
-        } catch (IOException e) {
-        }
-        */
+    public static void main(String[] args){
+        CommandInvoker commandInvoker = new CommandInvoker();
+        AppConfig appConfig = new AppConfig(commandInvoker);
+        appConfig.setup();
+
+        appConfig.process(args);   
     }
 }
