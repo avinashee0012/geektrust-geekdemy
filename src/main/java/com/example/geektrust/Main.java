@@ -9,6 +9,8 @@ public class Main {
         AppConfig appConfig = new AppConfig(commandInvoker);
         appConfig.setup();
 
-        appConfig.process(args);   
+        // args = new String[]{"sample_input/input1.txt"};
+
+        appConfig.process(args); 
     }
 }

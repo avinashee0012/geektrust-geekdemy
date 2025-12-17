@@ -10,35 +10,35 @@ public class CouponService {
         this.purchase = purchase;
     }
 
-    // TODO incorrect response
-    public void applyCoupon(CouponType couponType) {
-        double discount = 0;
-        if(purchase.getProgrammes() >= 4){
-            discount = purchase.getCheapest(); // cheapest item free
-            couponType = CouponType.B4G1;
-        } else {
-            switch (couponType) {
-                case DEAL_G20:
-                    if(purchase.getSubtotal() >= 10000){
-                        couponType = CouponType.DEAL_G20;
-                        discount = (purchase.getSubtotal() * couponType.getDiscountPercent() / 100); 
-                    }
-                    break;
-                case DEAL_G5:
-                    if (purchase.getProgrammes() >= 2) {
-                        couponType = CouponType.DEAL_G5;
-                        discount = (purchase.getSubtotal() * couponType.getDiscountPercent() / 100);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
+    public void applyCoupon(CouponType applyingCoupon) {
+        // TODO incorrect response
 
-        if (discount > purchase.getCouponDiscount()) {
-            purchase.setCoupon(couponType.name());
+        if (purchase.getCouponType() != CouponType.B4G1) {
+            CouponType coupon = null;
+            double discount = 0;
+
+            if (purchase.getSubtotal() >= 10000) {
+                int discountPerc = Math.max(applyingCoupon.getDiscountPercent(),
+                        purchase.getCouponType().getDiscountPercent());
+                switch (discountPerc) {
+                    case 5:
+                        coupon = CouponType.DEAL_G5;
+                        discount = purchase.getSubtotal() * coupon.getDiscountPercent() / 100;
+                        break;
+                    case 20:
+                        coupon = CouponType.DEAL_G20;
+                        discount = purchase.getSubtotal() * coupon.getDiscountPercent() / 100;
+                        break;
+                    default:
+                        break;
+                }
+            } else if (purchase.getProgrammes() >= 2 && applyingCoupon == CouponType.DEAL_G5) {
+                coupon = CouponType.DEAL_G5;
+            }
+            
+            purchase.setCouponType(coupon);
             purchase.setCouponDiscount(discount);
         }
+
     }
 }
-

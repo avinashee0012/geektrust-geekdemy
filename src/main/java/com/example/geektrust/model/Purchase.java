@@ -1,10 +1,12 @@
 package com.example.geektrust.model;
 
+import com.example.geektrust.model.enums.CouponType;
+
 public class Purchase {
     private int programmes;
     private int cheapest;
     private double subtotal;
-    private String coupon;
+    private CouponType couponType = CouponType.ZERO;
     private double couponDiscount;
     private boolean isProMember;
     private double proMembershipFee;
@@ -26,8 +28,8 @@ public class Purchase {
         return subtotal;
     }
 
-    public String getCoupon() {
-        return coupon;
+    public CouponType getCouponType() {
+        return couponType;
     }
 
     public double getCouponDiscount() {
@@ -62,8 +64,8 @@ public class Purchase {
         this.subtotal = subtotal;
     }
 
-    public void setCoupon(String coupon) {
-        this.coupon = coupon;
+    public void setCouponType(CouponType couponType) {
+        this.couponType = couponType;
     }
 
     public void setCouponDiscount(double couponDiscount) {
@@ -87,16 +89,17 @@ public class Purchase {
     }
 
     public void printPurchase(){
-        System.out.println("SUB_TOTAL " + subtotal);
-        System.out.println("COUPON_DISCOUNT " + coupon + " " + couponDiscount);
-        System.out.println("TOTAL_PRO_DISCOUNT " + totalProDiscount);
-        System.out.println("PRO_MEMBERSHIP_FEE " + proMembershipFee);
         double total = subtotal - couponDiscount;
         if(total < 6666) {
             enrollmentFee += 500;
             total += enrollmentFee;
         }
-        System.out.println("ENROLLMENT_FEE " + enrollmentFee);
-        System.out.println("TOTAL " + total);
+
+        System.out.println(String.format("SUB_TOTAL %.2f", subtotal));
+        System.out.println(String.format("COUPON_DISCOUNT %s %.2f", couponType, couponDiscount));
+        System.out.println(String.format("TOTAL_PRO_DISCOUNT %.2f", totalProDiscount));
+        System.out.println(String.format("PRO_MEMBERSHIP_FEE %.2f", proMembershipFee));
+        System.out.println(String.format("ENROLLMENT_FEE %.2f", enrollmentFee));
+        System.out.println(String.format("TOTAL %.2f", total));
     }
 }
