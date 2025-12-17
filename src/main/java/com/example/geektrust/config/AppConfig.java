@@ -13,9 +13,11 @@ import com.example.geektrust.command.CommandInvoker;
 import com.example.geektrust.command.PrintBillCommand;
 import com.example.geektrust.model.Purchase;
 import com.example.geektrust.service.BillService;
-import com.example.geektrust.service.CouponService;
 import com.example.geektrust.service.MembershipService;
 import com.example.geektrust.service.PurchaseService;
+import com.example.geektrust.service.impl.BillServiceImpl;
+import com.example.geektrust.service.impl.MembershipServiceImpl;
+import com.example.geektrust.service.impl.PurchaseServiceImpl;
 
 public class AppConfig {  
 
@@ -23,13 +25,12 @@ public class AppConfig {
     
     Purchase purchase = new Purchase();
 
-    PurchaseService purchaseService = new PurchaseService(purchase);
-    CouponService couponService = new CouponService(purchase);
-    MembershipService membershipService = new MembershipService(purchase);
-    BillService billService = new BillService(purchase);
+    PurchaseService purchaseService = new PurchaseServiceImpl(purchase);
+    MembershipService membershipService = new MembershipServiceImpl(purchaseService);
+    BillService billService = new BillServiceImpl(purchaseService);
 
     AddProgrammeCommand addProgrammeCommand = new AddProgrammeCommand(purchaseService);
-    ApplyCouponCommand applyCouponCommand = new ApplyCouponCommand(couponService);
+    ApplyCouponCommand applyCouponCommand = new ApplyCouponCommand(purchaseService);
     AddProMembershipCommand addProMembershipCommand = new AddProMembershipCommand(membershipService);
     PrintBillCommand printBillCommand = new PrintBillCommand(billService);
     
