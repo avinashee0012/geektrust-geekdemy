@@ -17,8 +17,7 @@ public class ApplyCouponCommand implements ICommand{
     @Override
     public void execute(List<String> tokens) {
         try {
-            CouponType couponType = CouponType.valueOf(tokens.get(COUPON_IDX));
-            couponService.applyCoupon(couponType);
+            couponService.applyCoupon(CouponType.valueOf(tokens.get(COUPON_IDX)));
         } catch (Exception e) {
             e.printStackTrace();
         }

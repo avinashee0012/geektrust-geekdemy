@@ -18,9 +18,7 @@ public class AddProgrammeCommand implements ICommand{
     @Override
     public void execute(List<String> tokens) {
         try{
-            ProgrammeType programmeType = ProgrammeType.valueOf(tokens.get(PROG_TYPE_IDX));
-            int qty = Integer.parseInt(tokens.get(QTY_IDX));
-            purchaseService.addProgramme(programmeType, qty);
+            purchaseService.addProgramme(ProgrammeType.valueOf(tokens.get(PROG_TYPE_IDX)), Integer.parseInt(tokens.get(QTY_IDX)));
         } catch (Exception e) {
             e.printStackTrace();
         }
