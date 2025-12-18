@@ -18,7 +18,7 @@ public class AddProgrammeCommand implements ICommand{
         try{
             purchaseService.addProgramme(ProgrammeType.valueOf(tokens.get(AppConstants.ONE)), Integer.parseInt(tokens.get(AppConstants.TWO)));
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException();
         }
     }
 }

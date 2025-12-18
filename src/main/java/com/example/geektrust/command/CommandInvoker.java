@@ -14,6 +14,10 @@ public class CommandInvoker {
     public void register(String commandName, ICommand command){
         commandMap.put(commandName, command);
     }
+
+    public ICommand get(String commandName){
+        return commandMap.get(commandName);
+    }
     
     public void invoke(String commandName, List<String> tokens){
         if(commandMap.containsKey(commandName)){

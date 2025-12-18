@@ -18,7 +18,7 @@ public class ApplyCouponCommand implements ICommand{
         try {
             couponService.applyCoupon(CouponType.valueOf(tokens.get(AppConstants.ONE)));
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException();
         }
     }
 }

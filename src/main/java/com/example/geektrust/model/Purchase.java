@@ -23,6 +23,11 @@ public class Purchase {
         if (couponType == CouponType.B4G1)
             return;
 
+        if(totalProgrammes() >= AppConstants.BUNDLE_THRESHOLD) {
+            couponType = CouponType.B4G1;
+            return;
+        }
+
         CouponType coupon = CouponType.NONE;
         if (calculateSubtotal() >= AppConstants.G20_SUBTOTAL_THRESHOLD) {
             int bestDiscount = Math.max(applyingCoupon.getDiscountPercent(),
@@ -41,17 +46,14 @@ public class Purchase {
 
     public void addCertifications(int qty) {
         this.certifications += qty;
-        applyB4G1Coupon();
     }
 
     public void addDegrees(int qty) {
         this.degrees += qty;
-        applyB4G1Coupon();
     }
 
     public void addDiplomas(int qty) {
         this.diplomas += qty;
-        applyB4G1Coupon();
     }
 
     public BillDto getBill(){
@@ -129,15 +131,8 @@ public class Purchase {
         return calculateSubtotal() - calculateCouponDiscount() + calculateEnrollmentFee();
     }
 
-    private int totalProgrammes() {
+    public int totalProgrammes() {
         return certifications + degrees + diplomas;
-    }
-
-    private void applyB4G1Coupon(){
-        if (totalProgrammes() >= AppConstants.BUNDLE_THRESHOLD) {
-            couponType = CouponType.B4G1;
-            return;
-        }
     }
     
     // GETTERS
