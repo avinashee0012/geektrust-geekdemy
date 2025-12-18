@@ -1,16 +1,17 @@
 package com.example.geektrust.service.impl;
 
+import com.example.geektrust.model.Purchase;
 import com.example.geektrust.service.MembershipService;
-import com.example.geektrust.service.PurchaseService;
 
 public class MembershipServiceImpl implements MembershipService{
-    private final PurchaseService purchaseService;
+    private final Purchase purchase;
 
-    public MembershipServiceImpl(PurchaseService purchaseService) {
-        this.purchaseService = purchaseService;
+    public MembershipServiceImpl(Purchase purchase) {
+        this.purchase = purchase;
     }
 
     public void addProMembership() {
-        purchaseService.addPro(true);
+        purchase.activatePro(true);
     }
+
 }

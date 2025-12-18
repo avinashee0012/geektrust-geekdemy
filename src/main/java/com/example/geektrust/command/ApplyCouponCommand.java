@@ -2,22 +2,21 @@ package com.example.geektrust.command;
 
 import java.util.List;
 
+import com.example.geektrust.config.AppConstants;
 import com.example.geektrust.model.enums.CouponType;
-import com.example.geektrust.service.PurchaseService;
+import com.example.geektrust.service.CouponService;
 
 public class ApplyCouponCommand implements ICommand{
-    private final PurchaseService purchaseService;
+    private final CouponService couponService;
 
-    private final int COUPON_IDX = 1;
-
-    public ApplyCouponCommand(PurchaseService purchaseService) {
-        this.purchaseService = purchaseService;
+    public ApplyCouponCommand(CouponService couponService) {
+        this.couponService = couponService;
     }
 
     @Override
     public void execute(List<String> tokens) {
         try {
-            purchaseService.applyCoupon(CouponType.valueOf(tokens.get(COUPON_IDX)));
+            couponService.applyCoupon(CouponType.valueOf(tokens.get(AppConstants.ONE)));
         } catch (Exception e) {
             e.printStackTrace();
         }
