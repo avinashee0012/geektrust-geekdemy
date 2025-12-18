@@ -1,31 +1,118 @@
-# Pre-requisites
-* Java 1.8/1.11/1.15
-* Maven
+# Geekdemy: Project Setup & Execution Guide
 
-# How to run the code
+![geektrust-geekdemy-avinashee0012](image.png)
 
-We have provided scripts to execute the code. 
+## Prerequisites
 
-Use `run.sh` if you are Linux/Unix/macOS Operating systems and `run.bat` if you are on Windows.  Both the files run the commands silently and prints only output from the input file `sample_input/input1.txt`. You are supposed to add the input commands in the file from the appropriate problem statement. 
+Make sure the following are installed:
 
-Internally both the scripts run the following commands 
+* **Java 8 (1.8)**
+* **Maven**
 
- * `mvn clean install -DskipTests assembly:single -q` - This will create a jar file `geektrust.jar` in the `target` folder.
- * `java -jar target/geektrust.jar sample_input/input1.txt` - This will execute the jar file passing in the sample input file as the command line argument
+---
 
- We expect your program to take the location to the text file as parameter. Input needs to be read from a text file, and output should be printed to the console. The text file will contain only commands in the format prescribed by the respective problem.
+## How to Run the Application
 
- Use the pom.xml provided along with this project. Please change the main class entry (`<mainClass>com.example.geektrust.Main</mainClass>`) in the pom.xml if your main class has changed.
+This project includes scripts to build and run the application easily.
 
- # Running the code for multiple test cases
+### Step 1: Use the appropriate script
 
- Please fill `input1.txt` and `input2.txt` with the input commands and use those files in `run.bat` or `run.sh`. Replace `java -jar target/geektrust.jar sample_input/input1.txt` with `java -jar target/geektrust.jar sample_input/input2.txt` to run the test case from the second file. 
+* **Linux / macOS / Unix** → `run.sh`
+* **Windows** → `run.bat`
 
- # How to execute the unit tests
+These scripts:
 
- `mvn clean test` will execute the unit test cases.
+* Build the project silently
+* Execute the application
+* Display output generated from the input file
+  (`sample_input/input1.txt`)
 
-# Help
+> Add input commands to the file as per the problem statement before execution.
 
-You can refer our help documents [here](https://help.geektrust.com)
-You can read build instructions [here](https://github.com/geektrust/coding-problem-artefacts/tree/master/Java)
+---
+
+### What happens behind the scenes
+
+The scripts internally run the following commands:
+
+1. **Build the project**
+
+   ```bash
+   mvn clean install -DskipTests assembly:single -q
+   ```
+
+   This creates the executable JAR:
+
+   ```
+   target/geektrust.jar
+   ```
+
+2. **Run the application**
+
+   ```bash
+   java -jar target/geektrust.jar sample_input/input1.txt
+   ```
+
+---
+
+## Input & Output Contract
+
+* The application accepts the **input file path** as a command-line argument.
+* Input is read from a **text file only**.
+* Output is printed to the **console**.
+* The input file contains commands strictly in the format defined by the problem statement.
+
+---
+
+## Maven Configuration
+
+Use the provided `pom.xml`.
+
+If your main class has changed, update this entry:
+
+```xml
+<mainClass>com.example.geektrust.Main</mainClass>
+```
+
+---
+
+## Running Multiple Test Cases
+
+1. Add commands to:
+
+   * `sample_input/input1.txt`
+   * `sample_input/input2.txt`
+
+2. Update the execution command in `run.sh` or `run.bat`:
+
+   ```bash
+   java -jar target/geektrust.jar sample_input/input2.txt
+   ```
+
+---
+
+## Running Unit Tests
+
+Execute all unit tests using:
+
+```bash
+mvn clean test
+```
+
+---
+
+## About the Developer
+
+**Avinash Pathak**
+Aspriring Java Backend Developer (Career Switcher)
+
+* Strong foundation in **Core Java, OOPs, Collections, Exception Handling**
+* Hands-on experience with **Spring Boot, REST APIs, Maven**
+* Focused on writing **clean, modular, and testable code**
+* Background of **6+ years at Amazon (Operations & Escalation Handling)**, and 1+ year of Java Development training from **Crio.Do** bringing strong ownership, problem-solving, and production mindset into software development
+
+📧 **Email:** *avinashee0012@gmail.com*
+💼 **LinkedIn:** *https://www.linkedin.com/in/avinashee0012/*
+🐙 **GitHub:** *https://github.com/avinashee0012*
+
+> Actively seeking **Java Backend Developer / Software Engineer (Fresher / Entry-Level)** opportunities.
